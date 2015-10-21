@@ -1,0 +1,15 @@
+{
+  "crawlTemplate" : [ "www.washingtonpost.com/" ],
+  "dataTemplate" : [ "www.washingtonpost.com/{alpha}/{words}/{not-slash}/{num}/{num}/{not-slash}{any?}$" ],
+  "destination" : "JSON",
+  "maxDepth" : 10,
+  "startUrls" : [ "http://www.washingtonpost.com", "http://www.washingtonpost.com/politics/bob-corker-the-small-town-mayor-dealing-with-iran-nuclear-framework/2015/04/03/f8367ee2-da13-11e4-ba28-f2a685dc7f89_story.html", "http://www.washingtonpost.com/news/morning-mix/wp/2015/04/04/online-donations-for-controversial-indiana-pizza-joint-top-840000/", "http://www.washingtonpost.com/politics/white-house-officials-defend-somalia-strategy-as-counterterrorism-model/2015/04/03/f996e5c0-da1c-11e4-b3f2-607bd612aeac_story.html", "http://www.washingtonpost.com/news/post-nation/wp/2014/12/09/ohio-man-exonerated-after-spending-27-years-in-prison-for-a-murder-he-didnt-commit/" ],
+  "advancedMode" : true,
+  "local" : false,
+  "connections" : 3,
+  "connectorGuid" : "f2ddffd1-a525-4a5c-9bee-6771a081ff56",
+  "pause" : 1,
+  "canonicalDisabled" : false,
+  "cookiesEnabled" : false,
+  "robotsDisabled" : false
+}

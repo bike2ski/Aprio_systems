@@ -1,0 +1,13 @@
+{
+  "connectorGuid" : "322f0e22-cd1f-4b1d-88f4-fa7d1ea3102b",
+  "startUrls" : [ "http://www.bbc.com/news/world-asia-32467986", "http://www.bbc.com/news/world-africa-32177123", "http://www.bbc.com/news/world-europe-32173632", "http://www.bbc.com/news/technology-32160263", "http://www.bbc.com/news/science-environment-32168507" ],
+  "maxDepth" : 10,
+  "crawlTemplate" : [ "www.bbc.com/" ],
+  "dataTemplate" : [ "www.bbc.com/news/{words}-{num}$" ],
+  "connections" : 3,
+  "pause" : 1,
+  "logFile": "~/Crawl.log",
+  "dbDir" : "~/crawlData",
+  "target" : "http://localhost:9200/article/bbc",
+  "destination": "JSON"
+}

@@ -1,0 +1,13 @@
+{
+  "crawlTemplate" : [ "www.huffingtonpost.com/" ],
+  "dataTemplate" : [ "www.huffingtonpost.com/{not-slash}/{not-slash}{any?}.html$" ],
+  "destination" : "JSON",
+  "maxDepth" : 10,
+  "startUrls" : [ "http://www.huffingtonpost.com/2015/04/25/nepal-earthquake-avalanche_n_7141944.html", "http://www.huffingtonpost.com/2015/04/04/highest-paying-companies_n_7004460.html", "http://www.huffingtonpost.com/2015/04/03/bob-menendez-citizens-united_n_7000350.html", "http://www.huffingtonpost.com/2015/04/05/mitt-romney-ncaa-bracket_n_7007908.html", "http://www.huffingtonpost.com/2015/04/05/obama-doctrine-iran_n_7008142.html", "http://www.huffingtonpost.com/john-bowen/five-success-strategies-f_b_6955014.html" ],
+  "connections" : 3,
+  "connectorGuid" : "679bf00a-b45b-426a-99d0-51a1b7d84061",
+  "pause" : 0,
+  "logFile": "~/Crawl.log",
+  "dbDir" : "~/crawlData",
+  "target" : "http://localhost:9200/article/huffPost"
+}

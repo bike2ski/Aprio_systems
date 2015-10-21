@@ -1,0 +1,13 @@
+{
+  "crawlTemplate" : [ "chicago.suntimes.com/" ],
+  "dataTemplate" : [ "chicago.suntimes.com/{words}/7/71/{num}/{words-num}$" ],
+  "destination" : "JSON",
+  "maxDepth" : 10,
+  "startUrls" : [ "http://chicago.suntimes.com/news/7/71/546703/cardinal-george-brilliant-mind-love-god-laid-rest", "http://chicago.suntimes.com/news-chicago/7/71/485231/loyola-university-fossil-fuels-investments", "http://chicago.suntimes.com/basketball/7/71/497663/pau-gasol-bulls-waiting-derrick-rose-save-day", "http://chicago.suntimes.com/education/7/71/499742/cps-reconsider-booting-daycare-center-prestigious-magnet-school", "http://chicago.suntimes.com/nationworld/7/71/495222/man-reported-missing-sea-66-days-reunites-family", "http://chicago.suntimes.com/politics/7/71/482637/editorial-gerrymandering-undermines-democracy" ],
+  "connections" : 3,
+  "connectorGuid" : "9ba073a0-8072-4d6c-99ad-a381e1008fff",
+  "pause" : 1,
+  "logFile": "~/Crawl.log",
+  "dbDir" : "~/crawlData",
+  "target" : "http://localhost:9200/article/sunTimes"
+}
