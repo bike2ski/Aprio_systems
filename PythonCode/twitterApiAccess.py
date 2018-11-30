@@ -15,9 +15,16 @@ import argparse
 import string
 import config
 import json
+import sys
 import elasticsearch
+from textwrap import TextWrapper
+from datetime import datetime
+from elasticsearch import Elasticsearch
 
-ident = 1
+es = elasticsearch.Elasticsearch()
+auth = OAuthHandler(config.consumer_key, config.consumer_secret)
+auth.set_access_token(config.access_token, config.access_secret)
+api = tweepy.API(auth)
 
 def get_parser():
     """Get parser for command line arguments."""
@@ -29,60 +36,25 @@ def get_parser():
                         default='-')
     return parser
 
+class TwitterListener(tweepy.StreamListener):
+    status_wrapper = TextWrapper(width=60, initial_indent='    ', subsequent_indent='    ')
 
-class MyListener(StreamListener):
-    """Custom StreamListener for streaming data."""
+    def on_status(self, status):
+        try:
+            json_data = status._json
 
-    def __init__(self, query):
-        query_fname = format_filename(query)
+            es.create(index="twitter",
+                doc_type="tweet",
+                body=json_data)
 
-    def on_data(self, data):
-        es.index(index="twitter", doc_type="tweet", id=id, body=data, request_timeout=120)
-        ident = ident + 1
-        print(data)
-        return True
+        except Exception, e:
+            print e
+            pass
 
-    def on_error(self, status):
-        print(status)
-        return True
+streamer = tweepy.Stream(auth=auth, listener=TwitterListener(), timeout=3000000000)
 
-
-def format_filename(fname):
-    """Convert file name into a safe string.
-    Arguments:
-        fname -- the file name to convert
-    Return:
-        String -- converted file name
-    """
-    return ''.join(convert_valid(one_char) for one_char in fname)
-
-
-def convert_valid(one_char):
-    """Convert a character into '_' if invalid.
-    Arguments:
-        one_char -- the char to convert
-    Return:
-        Character -- converted char
-    """
-    valid_chars = "-_.%s%s" % (string.ascii_letters, string.digits)
-    if one_char in valid_chars:
-        return one_char
-    else:
-        return '_'
-
-@classmethod
-def parse(cls, api, raw):
-    status = cls.first_parse(api, raw)
-    setattr(status, 'json', json.dumps(raw))
-    return status
-
-if __name__ == '__main__':
-    parser = get_parser()
-    args = parser.parse_args()
-    es = elasticsearch.Elasticsearch()
-    auth = OAuthHandler(config.consumer_key, config.consumer_secret)
-    auth.set_access_token(config.access_token, config.access_secret)
-    api = tweepy.API(auth)
-
-    twitter_stream = Stream(auth, MyListener(args.query))
-    twitter_stream.filter(track=[args.query])
+parser = get_parser()
+args = parser.parse_args()
+print(args.query)
+terms = ['bernie','feelthebern']
+streamer.filter(None,terms)
